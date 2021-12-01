@@ -5,13 +5,14 @@ const app = express()
 const port = 5000
 //포트는 자유롭게 사용 가능
 const { User } = require('./models/User');
+const config = require('./config/key');
 
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
 
 const mongoose = require('mongoose');
-mongoose.connect("mongodb+srv://eodbszla:1q2w3e4r@cluster0.7lq41.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+mongoose.connect(config.mongoURI)
   .then(()=>console.log('MongoDB Connected...'))
   .catch((err)=>console.log(err));
 
